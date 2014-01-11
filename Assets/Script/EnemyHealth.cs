@@ -3,7 +3,7 @@ using System.Collections;
 /// <summary>
 /// Playerhealth.
 /// </summary>
-public class PlayerHealth : MonoBehaviour {
+public class EnemyHealth : MonoBehaviour {
 
 	public int maxHealth=100;				//最大生命值
 	public int curHealth=100;				//当前生命值
@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour {
 	/// <summary>
 	/// 按百分比显示血条
 	/// </summary>
-		GUI.Box (new Rect(10,10,healthBarLength,20),curHealth+"/"+maxHealth);
+		GUI.Box (new Rect(10,40,healthBarLength,20),curHealth+"/"+maxHealth);
 			  /// <summary>
 			  //【新建 矩形(左边，顶端，生命槽长度，高)当前生命值+"/"+最大生命值】
 			  //【新建 矩形(位置)当前生命值+"/"+最大生命值】		
