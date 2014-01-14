@@ -6,7 +6,7 @@ public class EnemyAI : MonoBehaviour {
 	public  Transform target;			//目标
 	public int moveSpeed;				//移动速度
 	public int rotationSpeed;			//旋转速度	
-	
+	public int	maxDistance;
 	
 	private Transform myTransform;		//我的形态
 	void Awake() {
@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour {
 		//游戏对象 go =获取拥有Play玩家标签的游戏对象
 		
 		target = go.transform; //获取储存了拥有play玩家标签游戏对象的变量
+		maxDistance = 2;
 	}
 	
 	// Update is called once per frame
@@ -39,7 +40,9 @@ public class EnemyAI : MonoBehaviour {
 		//Quaternion 四元数 四元数用来表示旋转     Slerp	球面插值    LookRotation   注视旋转 也就是建立一个旋转，使z轴朝向view  y轴朝向up
 		//ookRotation(target.position - myTransform.position)   
 		
+		if(Vector3.Distance(target.position,myTransform.position)>maxDistance) {
 		//向前移动
 		myTransform.position += myTransform.forward * moveSpeed * Time.deltaTime;
+		}
 	}
 }
