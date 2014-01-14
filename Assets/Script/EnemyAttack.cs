@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayAttack : MonoBehaviour {
-	
-	public GameObject taregt;//游戏的TAG
+public class EnemyAttack : MonoBehaviour {
+
+public GameObject taregt;//游戏的TAG
 	public float attackTimer;//攻击时间
 	public float coolDown;	//冷却时间
 	
@@ -21,13 +21,13 @@ public class PlayAttack : MonoBehaviour {
 		if(attackTimer <0)
 			attackTimer = 0;
 		
-	  if(Input.GetKeyUp(KeyCode.F)){
+	  
 			if(attackTimer ==0){
 				
 			Attack();
-				attackTimer = coolDown;
+			attackTimer = coolDown;
 				
-			}
+			
 		}
 	}
 		private void Attack(){
@@ -43,7 +43,7 @@ public class PlayAttack : MonoBehaviour {
 		
 		if (distance <2.5f){
 			if (direction >0 ){
-			EnemyHealth eh=(EnemyHealth)taregt.GetComponent("EnemyHealth");//引用EnemyHealth脚本
+			PlayerHealth eh=(PlayerHealth)taregt.GetComponent("PlayerHealth");//引用EnemyHealth脚本
 		
 		eh.AddjustCurrentHealth(-10)	;//引用EnemyHealth脚本的调整当前生命值
 			}
