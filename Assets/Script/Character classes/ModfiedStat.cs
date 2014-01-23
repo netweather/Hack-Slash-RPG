@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-public class ModfiedStat : BaseStat 
+public class ModifiedStat : BaseStat 
 {
 	private List<ModifyingAttribute>_mods; 		//修改属性列表
 	private int _modValue;									//	用来储存从修改器获得的添加到基础值上的值
 
-	public   ModfiedStat()
+	public   ModifiedStat()
 	{
 		_mods = new List<ModifyingAttribute>();
 		_modValue = 0;								//修改值
