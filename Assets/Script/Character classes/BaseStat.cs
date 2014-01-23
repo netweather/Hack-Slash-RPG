@@ -47,8 +47,9 @@ private int CalculateExpToLevel() {						//计算下次升级所需经验
 	_baseValue++;
 	}
 	
-	public int AdjusedValue() {						//调整基础值和buff
-		return _baseValue + _buffValue;
+	public int AdjustedBaseValue  {						//调整基础值和buff
+		
+		get {return _baseValue + _buffValue; }
 	}
 	
 }
