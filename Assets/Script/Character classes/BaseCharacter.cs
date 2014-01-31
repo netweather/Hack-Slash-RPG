@@ -23,14 +23,13 @@ public class BaseCharacter : MonoBehaviour
 		_freeExp = 0;          //可用经验值为0
 		
 		_primaryAttribute = new Attribute[Enum.GetValues(typeof(AttributeName)).Length];//最终[基础属性]的样子
-
 		//									[枚举.获取值(类型(属性名称)).长度]//
 		_vital = new Vital[Enum.GetValues(typeof(VitalName)).Length];
 		_skill = new Skill[Enum.GetValues(typeof(SkillName)).Length]; 
 		
-		SetupPrimaryAttributes();       //设置基础属性
-		SetupVitals();                  //设置生命属性
-		SetupSkills();                  //设置技能属性
+		SetupPrimaryAttributes();
+		SetupVitals();
+		SetupSkills();
 	}
 
     #region 基础的设置器和获取器
@@ -74,16 +73,19 @@ public class BaseCharacter : MonoBehaviour
 	
 	private void SetupVitals() //[设置生命属性]
     {
-		for (int cnt = 0; cnt < _vital.Length; cnt++) {
+		for (int cnt = 0; cnt < _vital.Length; cnt++) 
 			_vital[cnt] = new Vital();
-		}
-	}
+
+        SetupVitalModifiers();//设置生命属性修改器
+    }
 	
 	private void SetupSkills() //[设置技能]
     {
-		for (int cnt = 0; cnt < _skill.Length; cnt++) {
+		for (int cnt = 0; cnt < _skill.Length; cnt++) 
 			_skill[cnt] = new Skill();
-		}
+
+        SetupSkillModifiers();//设置技能属性修改器
+		
 	}
 	
 	#endregion
@@ -143,9 +145,7 @@ public class BaseCharacter : MonoBehaviour
 	
 	}
 //#endregion
-    public void StatUpdate()    //信息更新
-    {
-        //遍历Vital[生命属性]和Skil[技能],然后调用Update[更新]功能 就是ModfiedStat里面的Update
+    public void StatUpdate() {
 		for(int cnt = 0; cnt < _vital.Length; cnt++)
 			_vital[cnt].update();
 		

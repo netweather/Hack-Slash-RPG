@@ -2,7 +2,8 @@
 using System.Collections;
 using System;               //快速使用Enum类
 
-public class CharacterGenerator : MonoBehaviour {
+public class CharacterGenerator : MonoBehaviour 
+{
     private PlayerCharacter _toon;                      //[私有 玩家角色]
     private const int STARTING_POINTS = 350;            //【起始点数】
     private const int MIN_STARTING_ATTRIBUTE_VALUE = 10;//[最小初始属性值]
@@ -19,8 +20,11 @@ public class CharacterGenerator : MonoBehaviour {
         //设置初始属性值
         for (int cnt = 0; cnt < Enum.GetValues(typeof(AttributeName)).Length; cnt++)
         {
-            _toon.GetPrimaryAttribute(cnt).BaseValue = MIN_STARTING_ATTRIBUTE_VALUE;//将所有的属性的基础值赋值为[最小初始值]
+            _toon.GetPrimaryAttribute(cnt).BaseValue = STARTING_VALUE;//将所有的属性的基础值赋值为[起始属性]
             //_toon.[获取基础属性(索引)].[基础属性]
+
+            pointsleft -= (STARTING_VALUE - MIN_STARTING_ATTRIBUTE_VALUE);
+            //[剩余点数] -= [起始属性] - [最小初始属性值]
         }
         _toon.StatUpdate();                         //_toon.更新
     }
@@ -31,13 +35,13 @@ public class CharacterGenerator : MonoBehaviour {
 	
 	}
 
-    void OnGUI() {
+    void OnGUI() 
+    {
         DisplayName();          //显示名字
         DisplayPointsleft();    //显示剩余点数
         DisplayAttributes();    //显示属性
         DisplayVitals();        //显示生命属性
         DisplaySkills();        //显示技能属性
-
     }
 
     private void DisplayName()              //显示名字
@@ -53,16 +57,16 @@ public class CharacterGenerator : MonoBehaviour {
         {
             GUI.Label(new Rect(10, 40 + (cnt * 25), 100, 25), ((AttributeName)cnt).ToString());             //显示属性名称
             GUI.Label(new Rect(115, 40 + (cnt * 25), 30, 25), _toon.GetPrimaryAttribute(cnt).AdjustedBaseValue.ToString());//显示属性值
-            
+
             if (GUI.Button(new Rect(150, 40 + (cnt * 25), 25, 25), "-"))            //当按[-]号按钮
             {
-                    if (_toon.GetPrimaryAttribute(cnt).BaseValue > MIN_STARTING_ATTRIBUTE_VALUE)        //属性是否大于[最小初始属性值]
-                    {
-                        _toon.GetPrimaryAttribute(cnt).BaseValue--; //基础属性减1
-                        pointsleft++;                               //[剩余点数]+1
-                        _toon.StatUpdate();                         //_toon.更新
-                    }
-              }
+                if (_toon.GetPrimaryAttribute(cnt).BaseValue > MIN_STARTING_ATTRIBUTE_VALUE)        //属性是否大于[最小初始属性值]
+                {
+                    _toon.GetPrimaryAttribute(cnt).BaseValue--; //基础属性减1
+                    pointsleft++;                               //[剩余点数]+1
+                    _toon.StatUpdate();                         //_toon.更新
+                }
+            }
 
             if (GUI.Button(new Rect(180, 40 + (cnt * 25), 25, 25), "+"))            //当按[+]号按钮
             {
@@ -74,10 +78,8 @@ public class CharacterGenerator : MonoBehaviour {
                 }
             }
         }
-
-        
     }
-
+        
     private void DisplayVitals() //显示生命属性
     {
         for (int cnt = 0; cnt < Enum.GetValues(typeof(VitalName)).Length; cnt++)
@@ -86,7 +88,7 @@ public class CharacterGenerator : MonoBehaviour {
             GUI.Label(new Rect(115, 40 + ((cnt + 7) * 25), 30, 25), _toon.GetVital(cnt).AdjustedBaseValue.ToString());
         }
     }
-
+    
     private void DisplaySkills()        //显示技能属性
     {
         for (int cnt = 0; cnt < Enum.GetValues(typeof(SkillName)).Length; cnt++)
@@ -95,7 +97,8 @@ public class CharacterGenerator : MonoBehaviour {
             GUI.Label(new Rect(355, 40 + (cnt  * 25), 30, 25), _toon.GetSkill(cnt).AdjustedBaseValue.ToString());
         }
     }
-
+    
+    
     private void DisplayPointsleft()    //显示剩余点数
     {
         GUI.Label(new Rect(250, 10, 100, 25), "Points Left :" + pointsleft.ToString());
@@ -103,8 +106,4 @@ public class CharacterGenerator : MonoBehaviour {
        // GUI.Label(new Rect(250, 10, 100, 25), "Points Left :" + pointsleft);
 
     }
-
-
-
-
 }

@@ -47,7 +47,9 @@
      <Compile Include="Assets\Script\Character classes\Attribute.cs" />
      <Compile Include="Assets\Script\Character classes\BaseCharacter.cs" />
      <Compile Include="Assets\Script\Character classes\BaseStat.cs" />
+     <Compile Include="Assets\Script\Character classes\CharacterGenerator.cs" />
      <Compile Include="Assets\Script\Character classes\ModfiedStat.cs" />
+     <Compile Include="Assets\Script\Character classes\PlayerCharacter.cs" />
      <Compile Include="Assets\Script\Character classes\Skill.cs" />
      <Compile Include="Assets\Script\Character classes\Vital.cs" />
      <Compile Include="Assets\Script\EnemyAI.cs" />
