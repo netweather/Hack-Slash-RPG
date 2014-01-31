@@ -44,7 +44,18 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Character classes\Attribute.cs" />
+     <Compile Include="Assets\Script\Character classes\BaseCharacter.cs" />
+     <Compile Include="Assets\Script\Character classes\BaseStat.cs" />
+     <Compile Include="Assets\Script\Character classes\ModfiedStat.cs" />
+     <Compile Include="Assets\Script\Character classes\Skill.cs" />
+     <Compile Include="Assets\Script\Character classes\Vital.cs" />
+     <Compile Include="Assets\Script\EnemyAI.cs" />
+     <Compile Include="Assets\Script\EnemyAttack.cs" />
+     <Compile Include="Assets\Script\EnemyHealth.cs" />
+     <Compile Include="Assets\Script\PlayerAttack.cs" />
      <Compile Include="Assets\Script\PlayerHealth.cs" />
+     <Compile Include="Assets\Script\Targetting.cs" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

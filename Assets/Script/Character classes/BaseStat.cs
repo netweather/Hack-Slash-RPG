@@ -1,24 +1,23 @@
 ﻿
 public class BaseStat{
-
-	private int _baseValue;  		//升级的基础值
+    private int _baseValue;  		//升级的基础值
 	private int _buffValue;			//游戏获得的正面或负面状态
-	private int _expToLevel;			//升级所需经验
+	private int _expToLevel;			//升级所需经验值总数
 	private float _levelModifier;  //下次升级所需的经验
 	
 	public BaseStat () {
-		_baseValue = 0;
-		_buffValue = 0;
+		_baseValue = 0;         //基础值
+		_buffValue = 0;         //BUff值
 		_levelModifier = 1.1f; //下次升级经验增加10%
-		_expToLevel = 100;
+		_expToLevel = 100;     //升级所需经验值
 	}
 	
 	
 #region  基础设置器和获取器
 	//设置和获取器
 	public int BaseValue {
-		get{ return _baseValue; }
-		set{ _baseValue  = value; }
+		get{ return _baseValue; }       //获取
+		set{ _baseValue  = value; }     //设置
 	}
 	
 		public int BuffValue {
@@ -49,7 +48,9 @@ private int CalculateExpToLevel() {						//计算下次升级所需经验
 	
 	public int AdjustedBaseValue  {						//调整基础值和buff
 		
-		get {return _baseValue + _buffValue; }
+		get {
+            return _baseValue + _buffValue; 
+        }
 	}
 	
 }

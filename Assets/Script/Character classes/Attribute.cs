@@ -10,12 +10,13 @@
 /// <summary>
 /// 所有属性列表
 /// </summary>
-public enum AttributeName {
+public enum AttributeName 
+{
 	Might,					//魔法
-	Constituion,			//体质
-	Nimbleness,			//敏捷
+    Constitution,			//体质
+	Nimbleness,			    //敏捷
 	Speed,					//速度
-	Concentration,		//集中
-	WillPower,				//意志力
-	Charisma  			//魅力
+	Concentration,		    //集中
+	Willpower,				//意志力
+	Charisma  			    //魅力
 }

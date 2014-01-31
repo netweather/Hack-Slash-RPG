@@ -1,0 +1,10 @@
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\Temp\bin\Debug\nunit.framework.dll
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Administrator\Documents\Hack-Slash-RPG-\obj\Debug\Assembly-CSharp-firstpass.pdb
