@@ -22,6 +22,9 @@ public class CharacterGenerator : MonoBehaviour
     private const int BUTTON_HEIGHT = 20;    //按钮高度
 
     private int statStartingPos = 40;        //信息起始位置
+
+    //public GUIStyle myStyle;                //GUI风格
+    public GUISkin mySkin;                  //GUI皮肤
 	// Use this for initialization
 	void Start () {
         _toon = new PlayerCharacter();                  //【新建 玩家角色】
@@ -49,6 +52,8 @@ public class CharacterGenerator : MonoBehaviour
 
     void OnGUI() 
     {
+        GUI.skin = mySkin;     //皮肤
+
         DisplayName();          //显示名字
         DisplayPointsleft();    //显示剩余点数
         DisplayAttributes();    //显示属性
@@ -143,12 +148,12 @@ public class CharacterGenerator : MonoBehaviour
             GUI.Label(new Rect(
                 OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH + BUTTON_WIDTH * 2 + OFFSET * 2,  //x
                 statStartingPos + (cnt * LINE_HEIGHT),                                              //y
-                STAT_LABEL_WIDTH,                                                                   //width
+                STAT_LABEL_WIDTH + OFFSET*2,                                                                   //width
                 LINE_HEIGHT                                                                         //height
                 ), ((SkillName)cnt).ToString());
 
             GUI.Label(new Rect(
-                OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH + BUTTON_WIDTH * 2 + OFFSET * 2 + STAT_LABEL_WIDTH, //x
+                OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH + BUTTON_WIDTH * 2 + OFFSET * 5 + STAT_LABEL_WIDTH, //x
                 statStartingPos + (cnt * LINE_HEIGHT),                                                                //y
                 BASEVALUE_LABEL_WIDTH,                                                                                //width
                 LINE_HEIGHT                                                                                           //height
