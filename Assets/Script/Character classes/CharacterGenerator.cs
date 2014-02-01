@@ -4,27 +4,39 @@ using System;               //快速使用Enum类
 
 public class CharacterGenerator : MonoBehaviour 
 {
-    private PlayerCharacter _toon;                      //[私有 玩家角色]
+    private PlayerCharacter _toon;                      //【私有 玩家角色】
     private const int STARTING_POINTS = 350;            //【起始点数】
-    private const int MIN_STARTING_ATTRIBUTE_VALUE = 10;//[最小初始属性值]
-    private const int STARTING_VALUE = 50;              //[起始属性]
-    private int pointsleft;                             //[剩余点数]
+    private const int MIN_STARTING_ATTRIBUTE_VALUE = 10;//【最小初始属性值】
+    private const int STARTING_VALUE = 50;              //【起始属性】
+    private int pointsleft;                             //【剩余点数】
 
+
+    private const int OFFSET =5;        //偏移
+    private const int LINE_HEIGHT = 20;  // 行高
+
+    private const int STAT_LABEL  = 100; //信息标签
+    private const int STAT_LABEL_WIDTH = 100;   ////信息标签宽
+    private const int BASEVALUE_LABEL_WIDTH = 30;   ///基础值标签宽度
+                                                    ///
+    private const int BUTTON_WIDTH = 20;    //按钮宽度
+    private const int BUTTON_HEIGHT = 20;    //按钮高度
+
+    private int statStartingPos = 40;        //信息起始位置
 	// Use this for initialization
 	void Start () {
-        _toon = new PlayerCharacter();                  //[新建 玩家角色]
-        _toon.Awake();                                  //{_toon.唤醒]
+        _toon = new PlayerCharacter();                  //【新建 玩家角色】
+        _toon.Awake();                                  //【_toon.唤醒】
 
-        pointsleft = STARTING_POINTS;                   //[剩余点数]=【起始点数】
+        pointsleft = STARTING_POINTS;                   //【剩余点数】=【起始点数】
 
         //设置初始属性值
         for (int cnt = 0; cnt < Enum.GetValues(typeof(AttributeName)).Length; cnt++)
         {
-            _toon.GetPrimaryAttribute(cnt).BaseValue = STARTING_VALUE;//将所有的属性的基础值赋值为[起始属性]
-            //_toon.[获取基础属性(索引)].[基础属性]
+            _toon.GetPrimaryAttribute(cnt).BaseValue = STARTING_VALUE;//将所有的属性的基础值赋值为【起始属性】
+            //_toon.【获取基础属性(索引)】.【基础属性】
 
             pointsleft -= (STARTING_VALUE - MIN_STARTING_ATTRIBUTE_VALUE);
-            //[剩余点数] -= [起始属性] - [最小初始属性值]
+            //【剩余点数】 -= 【起始属性】 - 【最小初始属性值】
         }
         _toon.StatUpdate();                         //_toon.更新
     }
@@ -46,7 +58,7 @@ public class CharacterGenerator : MonoBehaviour
 
     private void DisplayName()              //显示名字
     {
-        GUI.Label(new Rect(10, 10, 50, 25), "name:");                       //标签
+        GUI.Label(new Rect(10, 10, 50, 25), "Name:");                       //标签
         _toon.Name = GUI.TextField(new Rect(65, 10, 100, 25), _toon.Name);  //输入框
         //                                   X,  Y,width,height
     }
@@ -55,25 +67,48 @@ public class CharacterGenerator : MonoBehaviour
     {
         for (int cnt = 0; cnt < Enum.GetValues(typeof(AttributeName)).Length; cnt++)
         {
-            GUI.Label(new Rect(10, 40 + (cnt * 25), 100, 25), ((AttributeName)cnt).ToString());             //显示属性名称
-            GUI.Label(new Rect(115, 40 + (cnt * 25), 30, 25), _toon.GetPrimaryAttribute(cnt).AdjustedBaseValue.ToString());//显示属性值
+            GUI.Label(new Rect(//显示属性名称
+                OFFSET,                                     //x
+                statStartingPos + (cnt * LINE_HEIGHT),      //y
+                STAT_LABEL_WIDTH,                           //width
+                LINE_HEIGHT                                 //height
+                ), ((AttributeName)cnt).ToString());
 
-            if (GUI.Button(new Rect(150, 40 + (cnt * 25), 25, 25), "-"))            //当按[-]号按钮
+            GUI.Label(new Rect(                             //显示属性值
+                STAT_LABEL_WIDTH + OFFSET,                  //x
+                statStartingPos + (cnt * LINE_HEIGHT),      //y
+                BASEVALUE_LABEL_WIDTH,                      //width
+                LINE_HEIGHT                                 //height
+                ), _toon.GetPrimaryAttribute(cnt).AdjustedBaseValue.ToString());
+
+            if (GUI.Button(new Rect(                                 //当按【-】号按钮
+                OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH,   //x
+                statStartingPos + (cnt * BUTTON_HEIGHT),             //y
+                BUTTON_WIDTH,                                        //width
+                BUTTON_HEIGHT                                        //height
+                ), "-"))           
+
             {
-                if (_toon.GetPrimaryAttribute(cnt).BaseValue > MIN_STARTING_ATTRIBUTE_VALUE)        //属性是否大于[最小初始属性值]
+                if (_toon.GetPrimaryAttribute(cnt).BaseValue > MIN_STARTING_ATTRIBUTE_VALUE)        //属性是否大于【最小初始属性值】
                 {
                     _toon.GetPrimaryAttribute(cnt).BaseValue--; //基础属性减1
-                    pointsleft++;                               //[剩余点数]+1
+                    pointsleft++;                               //【剩余点数】+1
                     _toon.StatUpdate();                         //_toon.更新
                 }
             }
 
-            if (GUI.Button(new Rect(180, 40 + (cnt * 25), 25, 25), "+"))            //当按[+]号按钮
+            if (GUI.Button(new Rect(                                                //当按【+】号按钮
+                OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH + BUTTON_WIDTH,   //x
+                statStartingPos + (cnt * BUTTON_HEIGHT),                            //y
+                BUTTON_WIDTH,                                                       //width
+                BUTTON_HEIGHT                                                       //height
+                ), "+"))    
+
             {
-                if (pointsleft > 0)                                                  //[剩余点数]>0
+                if (pointsleft > 0)                                                  //【剩余点数】>0
                 {
                     _toon.GetPrimaryAttribute(cnt).BaseValue++;                     ////属性+1
-                    pointsleft--;                                                  //[剩余点数]-1
+                    pointsleft--;                                                  //【剩余点数】-1
                     _toon.StatUpdate();                         //_toon.更新
                 }
             }
@@ -84,8 +119,20 @@ public class CharacterGenerator : MonoBehaviour
     {
         for (int cnt = 0; cnt < Enum.GetValues(typeof(VitalName)).Length; cnt++)
         {
-            GUI.Label(new Rect(10, 40 + ((cnt + 7) * 25), 100, 25), ((VitalName)cnt).ToString());
-            GUI.Label(new Rect(115, 40 + ((cnt + 7) * 25), 30, 25), _toon.GetVital(cnt).AdjustedBaseValue.ToString());
+            GUI.Label(new Rect(
+                OFFSET,                                             //x
+                statStartingPos + ((cnt + 7) * LINE_HEIGHT),        //y
+                STAT_LABEL_WIDTH,                                   //width
+                LINE_HEIGHT                                         //height
+                ), ((VitalName)cnt).ToString());
+
+            GUI.Label(new Rect(
+                OFFSET + STAT_LABEL_WIDTH,                          //x
+                statStartingPos + ((cnt + 7) * LINE_HEIGHT),        //y
+                BASEVALUE_LABEL_WIDTH,                              //width
+                LINE_HEIGHT                                         //height
+                ), _toon.GetVital(cnt).AdjustedBaseValue.ToString());
+
         }
     }
     
@@ -93,8 +140,20 @@ public class CharacterGenerator : MonoBehaviour
     {
         for (int cnt = 0; cnt < Enum.GetValues(typeof(SkillName)).Length; cnt++)
         {
-            GUI.Label(new Rect(250, 40 + (cnt * 25), 100, 25), ((SkillName)cnt).ToString());
-            GUI.Label(new Rect(355, 40 + (cnt  * 25), 30, 25), _toon.GetSkill(cnt).AdjustedBaseValue.ToString());
+            GUI.Label(new Rect(
+                OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH + BUTTON_WIDTH * 2 + OFFSET * 2,  //x
+                statStartingPos + (cnt * LINE_HEIGHT),                                              //y
+                STAT_LABEL_WIDTH,                                                                   //width
+                LINE_HEIGHT                                                                         //height
+                ), ((SkillName)cnt).ToString());
+
+            GUI.Label(new Rect(
+                OFFSET + STAT_LABEL_WIDTH + BASEVALUE_LABEL_WIDTH + BUTTON_WIDTH * 2 + OFFSET * 2 + STAT_LABEL_WIDTH, //x
+                statStartingPos + (cnt * LINE_HEIGHT),                                                                //y
+                BASEVALUE_LABEL_WIDTH,                                                                                //width
+                LINE_HEIGHT                                                                                           //height
+                ), _toon.GetSkill(cnt).AdjustedBaseValue.ToString());
+
         }
     }
     
