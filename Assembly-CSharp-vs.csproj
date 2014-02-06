@@ -48,6 +48,7 @@
      <Compile Include="Assets\Script\Character classes\BaseCharacter.cs" />
      <Compile Include="Assets\Script\Character classes\BaseStat.cs" />
      <Compile Include="Assets\Script\Character classes\CharacterGenerator.cs" />
+     <Compile Include="Assets\Script\Character classes\GameSettings.cs" />
      <Compile Include="Assets\Script\Character classes\ModfiedStat.cs" />
      <Compile Include="Assets\Script\Character classes\PlayerCharacter.cs" />
      <Compile Include="Assets\Script\Character classes\Skill.cs" />

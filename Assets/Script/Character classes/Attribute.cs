@@ -1,9 +1,18 @@
 ﻿public class Attribute : BaseStat {
-	public Attribute() {
-		ExpToLevel = 50;				//升级所需经验
+    private string _name;
+
+	public Attribute()              //属性类
+    {
+        _name = "";                 //名字为空
+		ExpToLevel = 50;			//升级所需经验
 		LevelModifier = 1.05f;		//下次经验%5
-	
-	}
+		}
+
+    public string Name {
+        get { return _name; }
+        set {_name = value;}
+
+    }
 }
 
 

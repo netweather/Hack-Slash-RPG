@@ -25,10 +25,24 @@ public class CharacterGenerator : MonoBehaviour
 
     //public GUIStyle myStyle;                //GUI风格
     public GUISkin mySkin;                  //GUI皮肤
+
+    public GameObject PlayerPrefab;         //角色Prefab
+
+
+
+
 	// Use this for initialization
 	void Start () {
-        _toon = new PlayerCharacter();                  //【新建 玩家角色】
-        _toon.Awake();                                  //【_toon.唤醒】
+        GameObject pc = Instantiate(PlayerPrefab,Vector3.zero,Quaternion.identity) as GameObject;
+        //游戏对象 pc = [实例(角色Prefab,[三维向量.零点],[四元数.同一性]               设置为   游戏对象]
+
+        pc.name = "pc";
+        //pc.名字
+       // _toon = new PlayerCharacter();                  //【新建 玩家角色】
+       // _toon.Awake();                                  //【_toon.唤醒】
+
+          _toon=pc.GetComponent<PlayerCharacter>();
+        //_toon=pc.获取的成分<>
 
         pointsleft = STARTING_POINTS;                   //【剩余点数】=【起始点数】
 
@@ -59,6 +73,9 @@ public class CharacterGenerator : MonoBehaviour
         DisplayAttributes();    //显示属性
         DisplayVitals();        //显示生命属性
         DisplaySkills();        //显示技能属性
+
+        DisplayCreateButton();  //显示创建按钮
+
     }
 
     private void DisplayName()              //显示名字
@@ -170,4 +187,25 @@ public class CharacterGenerator : MonoBehaviour
        // GUI.Label(new Rect(250, 10, 100, 25), "Points Left :" + pointsleft);
 
     }
+
+    private void DisplayCreateButton()      //显示创建按钮
+    {
+        if (GUI.Button(new Rect(Screen.width / 2 - 50, statStartingPos + (10 * LINE_HEIGHT), 100, LINE_HEIGHT), "Create"))
+        {
+            //           简单的写法
+            GameSettings gsScript = GameObject.Find ("__GameSettings").GetComponent<GameSettings>();
+            //                      查找__GameSettings游戏对象       . 获取成分<GameSettings>
+
+            //改变生命属性(Vital)的当前值(Cur Value)为它的最大修改值
+
+            gsScript.SaveCharacterData();            
+            //保存数据
+        
+            Application.LoadLevel("Targetting Example");
+            //载入场景
+        }
+    }
+
+
+
 }

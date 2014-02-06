@@ -68,6 +68,7 @@ public class BaseCharacter : MonoBehaviour
     {
 		for (int cnt = 0; cnt < _primaryAttribute.Length; cnt++) {
 			_primaryAttribute[cnt] = new Attribute();
+            _primaryAttribute[cnt].Name=((AttributeName)cnt).ToString();
 		}
 	}
 	
@@ -111,7 +112,7 @@ public class BaseCharacter : MonoBehaviour
 	private void SetupVitalModifiers()          //设置生命属性修改器
     {
 		//health  生命
-		GetVital((int)VitalName.Health).AddModifier(new ModifyingAttribute (GetPrimaryAttribute((int)AttributeName.Constitution), 0.5f));
+        GetVital((int)VitalName.Health).AddModifier(new ModifyingAttribute(GetPrimaryAttribute((int)AttributeName.Constitution), 0.5f));
     //[获取生命属性]    [属性名称].生命    .            新的 [修改属性]           根据
 		//energy	能量
 			

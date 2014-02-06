@@ -23,6 +23,7 @@
 }
 	public enum VitalName 
     {
+        //生命,
 		Health,                 //生命
 		Energy,                 //能量
 		Mana                    //法力

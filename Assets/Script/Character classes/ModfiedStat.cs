@@ -46,6 +46,27 @@ public class ModifiedStat : BaseStat
         CalculateModValue();   //计算修改值
     }
 
+    public string GetModifyingAttributesString()      //获取修改属性字符串
+    {
+        string temp = "";
+
+        //		UnityEngine.Debug.Log(_mods.Count);
+
+        for (int cnt = 0; cnt < _mods.Count; cnt++)
+        {
+            temp += _mods[cnt].attribute.Name;
+            temp += "_";
+            temp += _mods[cnt].ratio;
+
+            if (cnt < _mods.Count - 1)
+                temp += "|";
+
+        }
+
+        UnityEngine.Debug.Log(temp);
+        return temp;
+
+    }
 }
 //公开 结构 修改属性
 public struct ModifyingAttribute        //修改属性
